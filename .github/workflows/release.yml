@@ -79,4 +79,4 @@ jobs:
 
     - name: Push to NuGet
       if: success() && (steps.affected.outputs.should_deploy == 'true' || github.event.inputs.skip_affected || steps.last_successful_commit.outputs.commit_hash == '')
-      run: dotnet nuget push *.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push *.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.nuget_api_secret }}
