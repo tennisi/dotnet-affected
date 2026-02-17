@@ -1,6 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <Import Project="$(PackageDefaultsPropsPath)" />
 
+    <PropertyGroup>
+        <PackageId>Tennisi.DotnetAffected.Abstractions</PackageId>
+    </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.Build" ExcludeAssets="runtime" />
     </ItemGroup>

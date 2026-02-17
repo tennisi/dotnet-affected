@@ -9,10 +9,12 @@
     <Target Name="_BuildLoacalTasksNuget" BeforeTargets="DispatchToInnerBuilds">
         <!-- Delete previous package packed and extracted -->
         <ItemGroup>
+            <_DotnetAffectedNupkg Include="$(MSBuildThisFileDirectory)bin/*Tennisi.DotnetAffected.Tasks.*.nupkg"/>
             <_DotnetAffectedNupkg Include="$(MSBuildThisFileDirectory)bin/*DotnetAffected.Tasks.*.nupkg"/>
 
             <_DotnetAffectedPkgFiles Include="$(MSBuildThisFileDirectory)$(OutputPath)/DotnetAffected/**/*.*"/>
             <_DotnetAffectedPkgFiles Include="$(_DotnetAffectedNupkg)"/>
+            <_DotnetAffectedPkgFiles Include="$(MSBuildThisFileDirectory)bin/*Tennisi.DotnetAffected.Tasks.*.snupkg"/>
             <_DotnetAffectedPkgFiles Include="$(MSBuildThisFileDirectory)bin/*DotnetAffected.Tasks.*.snupkg"/>
         </ItemGroup>
         <Delete Files="@(_DotnetAffectedPkgFiles)"/>
@@ -39,6 +41,7 @@
 
         <ItemGroup>
             <_DotnetAffectedNupkg Remove="@(_DotnetAffectedNupkg)"/>
+            <_DotnetAffectedNupkg Include="$(MSBuildThisFileDirectory)bin/*Tennisi.DotnetAffected.Tasks.*.nupkg"/>
             <_DotnetAffectedNupkg Include="$(MSBuildThisFileDirectory)bin/*DotnetAffected.Tasks.*.nupkg"/>
         </ItemGroup>
         <!-- Extract the content of the nuget package into the folder "DotnetAffected" in the output folder. -->
