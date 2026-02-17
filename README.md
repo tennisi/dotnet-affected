@@ -96,7 +96,7 @@ Alternatively, dotnet-affected can be executed directly by MSBuild without using
 
 ```xml
 
-<Project Sdk="DotnetAffected.Tasks/3.0.0;Microsoft.Build.Traversal/3.2.0">
+<Project Sdk="Tennisi.DotnetAffected.Tasks/3.0.0;Microsoft.Build.Traversal/3.2.0">
     <Target Name="_DotnetAffectedCheck" AfterTargets="DotnetAffectedCheck">
         <!-- Print all affected projects -->
         <Message Text="  >> %(ProjectReference.Identity)" Importance="high"/>
