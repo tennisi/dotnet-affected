@@ -1,6 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    <ItemGroup>
-        <ProjectReference Include="$(CliPath)dotnet-affected.csproj" />
-        <ProjectReference Include="$(TestPath)DotnetAffected.Testing.Utils/DotnetAffected.Testing.Utils.csproj" />
-    </ItemGroup>
-</Project>

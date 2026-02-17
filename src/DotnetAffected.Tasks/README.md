@@ -18,19 +18,19 @@ for execution.
     ```json
     {
         "msbuild-sdks": {
-            "DotnetAffected.Tasks": "3.0.0"
+            "Tennisi.DotnetAffected.Tasks": "3.0.0"
         }
     }
     ```
     - Alternatively, you need to specify the version together with SDK name
     ```xml
-    <Project Sdk="DotnetAffected.Tasks/3.0.0">
+    <Project Sdk="Tennisi.DotnetAffected.Tasks/3.0.0">
         <!-- ... -->
     </Project>
     ```
 2. Create a dedicated `props` file **in the root of the git repo**:
     ```xml
-    <Project Sdk="DotnetAffected.Tasks;Microsoft.Build.Traversal">
+    <Project Sdk="Tennisi.DotnetAffected.Tasks;Microsoft.Build.Traversal">
     </Project>
     ```
    The actual filename is for you to choose, here we set it to `ci.props`
@@ -78,7 +78,7 @@ object, along with other properties defined.
 
 ```xml
 
-<Project Sdk="DotnetAffected.Tasks;Microsoft.Build.Traversal">
+<Project Sdk="Tennisi.DotnetAffected.Tasks;Microsoft.Build.Traversal">
     <!--
         Define a filter class, each class will later have multiple instances.
         The amount of instances is equal to the total amount of projects with changes.
@@ -115,7 +115,7 @@ You can add/remove projects after the affected projects resolved, ad-hoc in `ci.
 
 ```xml
 
-<Project Sdk="DotnetAffected.Tasks;Microsoft.Build.Traversal">
+<Project Sdk="Tennisi.DotnetAffected.Tasks;Microsoft.Build.Traversal">
     <Target Name="_DotnetAffectedCheck" AfterTargets="DotnetAffectedCheck">
         <Message Text="Found $(DotnetAffectedProjectCount) projects: " Importance="high"/>
 
@@ -143,7 +143,7 @@ So instead of using ad-hoc `.targets` code in your `.props` file, you can:
 
 ```xml
 
-<Project Sdk="DotnetAffected.Tasks;Microsoft.Build.Traversal">
+<Project Sdk="Tennisi.DotnetAffected.Tasks;Microsoft.Build.Traversal">
     <PropertyGroup>
         <CustomAfterAffectedTargets>$(CustomAfterAffectedTargets);$(MSBuildThisFileDirectory)ci.targets
         </CustomAfterAffectedTargets>
@@ -232,7 +232,7 @@ Either execute it from the root or explicitly set the root in the `.props` file
 
 ```xml
 
-<Project Sdk="DotnetAffected.Tasks;Microsoft.Build.Traversal">
+<Project Sdk="Tennisi.DotnetAffected.Tasks;Microsoft.Build.Traversal">
     <PropertyGroup>
         <DotnetAffectedRoot>$(MSBuildThisFileDirectory)..\..</DotnetAffectedRoot>
     </PropertyGroup>
@@ -271,7 +271,7 @@ If you have issues, you can override the logic by specifically setting the `<Tar
 
 ```xml
 
-<Project Sdk="DotnetAffected.Tasks;Microsoft.Build.Traversal">
+<Project Sdk="Tennisi.DotnetAffected.Tasks;Microsoft.Build.Traversal">
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>

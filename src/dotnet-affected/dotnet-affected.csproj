@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <Import Project="$(PackageDefaultsPropsPath)" />
 
@@ -6,6 +6,7 @@
         <OutputType>Exe</OutputType>
         <ToolCommandName>dotnet-affected</ToolCommandName>
         <PackAsTool>true</PackAsTool>
+        <PackageId>Tennisi.dotnet-affected</PackageId>
     </PropertyGroup>
 
     <ItemGroup>
