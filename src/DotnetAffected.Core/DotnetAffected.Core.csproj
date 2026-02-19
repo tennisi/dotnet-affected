@@ -3,6 +3,7 @@
 
     <PropertyGroup>
         <RootNamespace>DotnetAffected.Core</RootNamespace>
+        <PackageId>Tennisi.DotnetAffected.Core</PackageId>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="$(SourcesPath)/DotnetAffected.Abstractions/DotnetAffected.Abstractions.csproj" />

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.Build.Traversal/3.2.0;DotnetAffected.Tasks/3.0.0">
+<Project Sdk="Microsoft.Build.Traversal/3.2.0;Tennisi.DotnetAffected.Tasks/3.0.0">
 
     <!-- Create class-like shapes that will turn into instances, populated with the respecptive properties from
          evaluated projects which the library has detected for having a change.

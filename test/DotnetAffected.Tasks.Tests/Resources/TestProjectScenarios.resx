@@ -31,8 +31,8 @@
     <data name="CiProps" xml:space="preserve">
         <value><![CDATA[
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="Sdk.props" Sdk="$(DotnetAffectedNugetDir)" />
-    <Import Project="Sdk.targets" Sdk="$(DotnetAffectedNugetDir)" />
+    <Import Project="$(DotnetAffectedNugetDir)\Sdk\Sdk.props" />
+    <Import Project="$(DotnetAffectedNugetDir)\Sdk\Sdk.targets" />
 </Project>
 ]]>
         </value>

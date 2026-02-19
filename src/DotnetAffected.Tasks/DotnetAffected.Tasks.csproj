@@ -4,6 +4,7 @@
 
     <PropertyGroup>
         <RootNamespace>DotnetAffected.Tasks</RootNamespace>
+        <PackageId>Tennisi.DotnetAffected.Tasks</PackageId>
 
         <ExcludeFromSourceBuild>true</ExcludeFromSourceBuild>
 
