@@ -1,12 +1,10 @@
-using DotnetAffected.Abstractions;
+﻿using DotnetAffected.Abstractions;
 using Microsoft.Build.Graph;
 using Microsoft.Build.Prediction;
 using Microsoft.Build.Prediction.Predictors;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace DotnetAffected.Core
 {
@@ -64,28 +62,19 @@ namespace DotnetAffected.Core
         public IEnumerable<ProjectGraphNode> GetReferencingProjects(
             IEnumerable<string> files)
         {
-            var hasReturned = new HashSet<string>(PathComparer.Instance);
+            var hasReturned = new HashSet<string>();
 
             var collector = new FilesByProjectGraphCollector(this._graph, this._repositoryPath);
             _executor.PredictInputsAndOutputs(_graph, collector);
 
+            // normalize paths so that they match on windows.
             var normalizedFiles = files
                 .Where(f => !_fileExclusions.Any(f.EndsWith))
-                .Select(Path.GetFullPath)
-                .ToList();
-
-            var projectPathToNode = _graph.ProjectNodes
-                .ToDictionary(n => n.ProjectInstance.FullPath, n => n, PathComparer.Instance);
+                .Select(Path.GetFullPath);
 
             foreach (var file in normalizedFiles)
             {
-                if (file.EndsWith(".csproj", PathComparer.DefaultStringComparison)
-                    && projectPathToNode.TryGetValue(file, out var node)
-                    && hasReturned.Add(node.ProjectInstance.FullPath))
-                {
-                    yield return node;
-                }
-
+                // determine nodes depending on the changed file
                 var nodesWithFiles = collector.PredictionsPerNode
                     .Where(x => x.Value.Contains(file));
 
@@ -96,25 +85,6 @@ namespace DotnetAffected.Core
                         yield return key;
                     }
                 }
-            }
-        }
-
-        private sealed class PathComparer : IEqualityComparer<string>
-        {
-            internal static readonly PathComparer Instance = new();
-            internal static readonly StringComparison DefaultStringComparison =
-                RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-
-            public bool Equals(string? x, string? y)
-            {
-                if (x == null && y == null) return true;
-                if (x == null || y == null) return false;
-                return string.Equals(Path.GetFullPath(x), Path.GetFullPath(y), DefaultStringComparison);
-            }
-
-            public int GetHashCode(string obj)
-            {
-                return (Path.GetFullPath(obj) ?? "").GetHashCode(DefaultStringComparison);
             }
         }
     }
